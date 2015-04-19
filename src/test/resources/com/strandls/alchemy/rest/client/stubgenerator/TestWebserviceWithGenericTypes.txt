@@ -1,0 +1,32 @@
+-----------------------------------com.strandls.alchemy.rest.client.stub.TestWebserviceWithGenericTypesStub.java-----------------------------------
+
+package com.strandls.alchemy.rest.client.stub;
+
+import java.util.Map;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import com.strandls.alchemy.rest.client.TestCustomException;
+
+
+/**
+ * Client side stub interface for {@link com.strandls.alchemy.rest.client.TestWebserviceWithGenericTypes}.
+ * 
+ */
+@Path("/testGenericTypes")
+public interface TestWebserviceWithGenericTypesStub {
+
+
+    @Produces({
+        "application/json"
+    })
+    @Consumes({
+        "application/json"
+    })
+    @POST
+    public Map<String, Integer> echo(Map<String, Integer> arg0)
+        throws TestCustomException
+    ;
+
+}

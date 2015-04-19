@@ -1,0 +1,32 @@
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+import com.strandls.alchemy.rest.client.AlchemyRestClientFactory;
+
+import lombok.Delegate;
+
+/**
+ * Proxy implementation for {@link TestStub}.
+ */
+@Singleton
+public class TestStubProxy implements TestStub {
+    /**
+     * The proxy implementation.
+     */
+    @Delegate
+    private final TestStub implementation;
+
+    /**
+     * Create the proxy instance
+     */
+    @Inject
+    public TestStubProxy(final AlchemyRestClientFactory clientFactory) {
+        try {
+            // generate real proxy implemetation.
+            implementation = clientFactory.getInstance(TestStub.class);
+        } catch (final Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+}

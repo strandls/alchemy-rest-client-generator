@@ -1,0 +1,183 @@
+
+// plugins used across the board
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
+apply plugin: "jacoco"
+apply plugin: 'signing'
+
+// set the group
+group = "com.strandls." + project.name.split("-")[0]
+
+// Sonar project can be applied only once in a multiproject build.
+// A hack to ensure it is applied only once
+if ( !project.ext.properties.containsKey("skipSonarPlugin") || !project.ext['skipSonarPlugin']) {
+    apply plugin: "sonar"
+}
+
+
+// java configuration
+targetCompatibility = 1.7
+sourceCompatibility = 1.7
+
+// Repository configuration
+repositories { mavenCentral() }
+
+// check for updates every build
+configurations.all { resolutionStrategy.cacheChangingModulesFor 0, 'seconds' }
+
+// Configure compile only configuration and a
+configurations {
+    compileOnly
+    testCompileOnly { extendsFrom compileOnly }
+    runtime { extendsFrom compile }
+}
+sourceSets {
+    main { compileClasspath += configurations.compileOnly }
+    test {
+        compileClasspath += configurations.compileOnly + configurations.testCompileOnly
+    }
+}
+
+
+test {
+    // set heap size for the test JVM(s)
+    minHeapSize = "128m"
+    maxHeapSize = "512m"
+
+    // set JVM arguments for the test JVM(s)
+    jvmArgs '-XX:MaxPermSize=256m'
+}
+
+
+// Core dependencies
+dependencies {
+    // Compile dependencies
+    compile "com.google.inject:guice:3.0"
+    compile "com.google.inject.extensions:guice-assistedinject:3.0"
+    compile "org.apache.commons:commons-lang3:3.0.1"
+
+    // logging
+    compile "org.slf4j:slf4j-api:1.7.5"
+
+    // Lombok magic
+    compileOnly group: "org.projectlombok", name: "lombok", version: "latest.release"
+
+    // test dependencies
+    testCompile 'junit:junit:4.+'
+    testCompile 'com.google.guiceberry:guiceberry:latest.release'
+
+    // logging
+    testCompile "ch.qos.logback:logback-core:1.0.13"
+    testCompile "ch.qos.logback:logback-classic:1.0.13"
+
+    // runtime logging
+    runtime "ch.qos.logback:logback-core:1.0.13"
+    runtime "ch.qos.logback:logback-classic:1.0.13"
+}
+
+// add compile only dependencies like project lombok to eclipse classpath
+eclipse.classpath {
+    plusConfigurations += [configurations.compileOnly]
+}
+
+// add source attachments
+eclipse.classpath.file {
+    // Classpath entry for Eclipse which changes the order of classpathentries; otherwise no sources for 3rd party jars are shown
+    withXml { xml ->
+        def node = xml.asNode()
+        def classpathContainer = node.find { it.@path == 'org.eclipse.jst.j2ee.internal.web.container' }
+        if(classpathContainer) {
+            node.remove(classpathContainer);
+            node.appendNode( 'classpathentry', [ kind: 'con', path: 'org.eclipse.jst.j2ee.internal.web.container', exported: 'true'])
+        }
+    }
+}
+
+// add default project natures
+eclipse.project { natures 'org.springsource.ide.eclipse.gradle.core.nature' }
+
+
+// Identify jars with our company
+jar { manifest.attributes provider: 'Strand Life Sciences Pvt. Ltd.' }
+
+// Dummy release task to differentiate between release and snapshot distributions
+task release() << {
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+// create java project structure
+task "createJavaDirs" << {
+    sourceSets*.java.srcDirs*.each { it.mkdirs() }
+    sourceSets*.resources.srcDirs*.each { it.mkdirs() }
+}
+
+// enable html output for find bugs
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
+// sign jars
+signing { sign configurations.archives }
+
+// publish to OSSRH
+artifacts { archives javadocJar, sourcesJar }
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name "Alchemy Inject"
+                packaging 'jar'
+                // optionally artifactId can be defined here
+                description ' A guice module discovery module with support for multi environments'
+                url 'https://github.com/strandls/alchemy-inject'
+
+                scm {
+                    connection 'scm:git:https://github.com/strandls/alchemy-inject'
+                    developerConnection 'scm:git:https://github.com/strandls/alchemy-inject'
+                    url 'scm:git:https://github.com/strandls/alchemy-inject'
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'omkarashish'
+                        name 'Ashish Shinde'
+                        email 'omkarashish@gmail.com'
+                    }
+                }
+            }
+        }
+    }
+}

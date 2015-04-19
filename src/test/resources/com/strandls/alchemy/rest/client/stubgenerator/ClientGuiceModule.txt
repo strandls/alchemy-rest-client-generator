@@ -1,0 +1,19 @@
+import com.google.inject.AbstractModule;
+
+/**
+ * Binds client stubs to the proxy implementations.
+ */
+public class ClientGuiceModule extends AbstractModule {
+
+    /*
+     * (non-Javadoc)
+     * @see com.google.inject.AbstractModule#configure()
+     */
+    @Override
+    protected void configure() {
+        bind(testStub1.class).to(testStub1Proxy.class);
+        bind(testStub2.class).to(testStub2Proxy.class);
+
+    }
+
+}

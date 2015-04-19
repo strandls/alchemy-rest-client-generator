@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<project name="Rest Proxy Client Generation Example" default="restProxyGen"
+	basedir=".">
+	<taskdef name="restProxyGen"
+		classname="com.strandls.alchemy.rest.client.stubgenerator.RestProxyGenerator"
+		classpath="${task.classpath}" />
+
+	<target name="restProxyGen" description="Generates rest proxy clients">
+		<restProxyGen outputDir="${client.src.dir}" includes=".*"
+			destinationPackage="${destinationPackage}"
+			classSuffix="Client" />
+	</target>
+
+</project>
+

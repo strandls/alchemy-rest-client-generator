@@ -1,0 +1,132 @@
+-----------------------------------com.strandls.alchemy.rest.client.stub.TestWebserviceWithPathStub.java-----------------------------------
+
+package com.strandls.alchemy.rest.client.stub;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.CookieParam;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
+import javax.ws.rs.MatrixParam;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+
+
+/**
+ * Client side stub interface for {@link com.strandls.alchemy.rest.client.TestWebserviceWithPath}.
+ * 
+ */
+@Path("/test")
+public interface TestWebserviceWithPathStub {
+
+
+    @Produces({
+        "application/json"
+    })
+    @Consumes({
+        "application/json"
+    })
+    @POST
+    public int[] echo(int[] arg0);
+
+    @Path("/echoFormParams")
+    @Produces({
+        "application/json"
+    })
+    @POST
+    public int[] echoFormParams(
+        @FormParam("param1")
+        int arg0,
+        @FormParam("param2")
+        int arg1,
+        @QueryParam("param3")
+        int arg2);
+
+    @Path("/echoHeaderParams/{param1}/")
+    @Produces({
+        "application/json"
+    })
+    @Consumes({
+        "application/json"
+    })
+    @GET
+    public int[] echoHeaderParams(
+        @PathParam("param1")
+        int arg0,
+        @HeaderParam("param2")
+        int arg1,
+        @CookieParam("param3")
+        int arg2);
+
+    @Path("/echoMatrixParams")
+    @Produces({
+        "application/json"
+    })
+    @Consumes({
+        "application/json"
+    })
+    @GET
+    public int[] echoMatrixParams(
+        @MatrixParam("param1")
+        int arg0,
+        @MatrixParam("param2")
+        int arg1,
+        @MatrixParam("param3")
+        int arg2);
+
+    @Path("/echoMixedParams/{param1}/")
+    @Produces({
+        "application/json"
+    })
+    @Consumes({
+        "application/json"
+    })
+    @GET
+    public int[] echoMixedParams(
+        @PathParam("param1")
+        int arg0,
+        @MatrixParam("param2")
+        int arg1,
+        @QueryParam("param3")
+        int arg2);
+
+    @Path("/echoPathParams/{param1}/{param2}/{param3}")
+    @Produces({
+        "application/json"
+    })
+    @Consumes({
+        "application/json"
+    })
+    @GET
+    public int[] echoPathParams(
+        @PathParam("param1")
+        int arg0,
+        @PathParam("param2")
+        int arg1,
+        @PathParam("param3")
+        int arg2);
+
+    @Path("/echoQueryParams")
+    @Produces({
+        "application/json"
+    })
+    @Consumes({
+        "application/json"
+    })
+    @GET
+    public int[] echoQueryParams(
+        @QueryParam("param1")
+        int arg0,
+        @QueryParam("param2")
+        int arg1,
+        @QueryParam("param3")
+        int arg2);
+
+    @Path("/noOp")
+    @POST
+    public void noOp();
+
+}
