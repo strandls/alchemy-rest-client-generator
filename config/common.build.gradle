@@ -151,16 +151,16 @@ uploadArchives {
             }
 
             pom.project {
-                name "Alchemy Inject"
+                name "Alchemy Rest Client Generator"
                 packaging 'jar'
                 // optionally artifactId can be defined here
-                description ' A guice module discovery module with support for multi environments'
-                url 'https://github.com/strandls/alchemy-inject'
+                description 'A rest client auto generator with stubs and proxy code mimicking your webservices. Can be used to build java clients for rest webservices or unit / integration tests for webservices.'
+                url 'https://github.com/strandls/alchemy-rest-client-generator'
 
                 scm {
-                    connection 'scm:git:https://github.com/strandls/alchemy-inject'
-                    developerConnection 'scm:git:https://github.com/strandls/alchemy-inject'
-                    url 'scm:git:https://github.com/strandls/alchemy-inject'
+                    connection 'scm:git:https://github.com/strandls/alchemy-rest-client-generator'
+                    developerConnection 'scm:git:https://github.com/strandls/alchemy-rest-client-generator'
+                    url 'scm:git:https://github.com/strandls/alchemy-rest-client-generator'
                 }
 
                 licenses {
@@ -180,4 +180,8 @@ uploadArchives {
             }
         }
     }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
 }
