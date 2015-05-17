@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Alchemy Rest Client Generator Authors
+ * Copyright (C) 2015 Strand Life Sciences.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -67,7 +67,7 @@ import com.sun.codemodel.JVar;
  * Generate a stub interface for a restful service. All the service class and
  * method jaxrs {@link Annotation}s are preserved.
  *
- * @author ashish
+ * @author Ashish Shinde
  *
  */
 @RequiredArgsConstructor(onConstructor = @_(@Inject))

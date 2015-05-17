@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Alchemy Rest Client Generator Authors
+ * Copyright (C) 2015 Strand Life Sciences.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -72,7 +72,7 @@ import com.strandls.alchemy.rest.client.reader.VoidMessageBodyReader;
 /**
  * Unit tests for {@link AlchemyRestClientFactory}.
  *
- * @author ashish
+ * @author Ashish Shinde
  *
  */
 public class AlchemyRestClientFactoryTest extends JerseyTest {
@@ -80,7 +80,7 @@ public class AlchemyRestClientFactoryTest extends JerseyTest {
     /**
      * The client side guice module.
      *
-     * @author ashish
+     * @author Ashish Shinde
      *
      */
     public class ClientModule extends AbstractModule {

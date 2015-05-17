@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Alchemy Rest Client Generator Authors
+ * Copyright (C) 2015 Strand Life Sciences.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * A mixin to ensure sensitive stacktrace and root cause information is not
  * leaked to the client.
  *
- * @author ashish
+ * @author Ashish Shinde
  *
  */
 public abstract class ThrowableMaskMixin {

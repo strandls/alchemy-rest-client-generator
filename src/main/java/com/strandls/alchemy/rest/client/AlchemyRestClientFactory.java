@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Alchemy Rest Client Generator Authors
+ * Copyright (C) 2015 Strand Life Sciences.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -76,7 +76,7 @@ import com.strandls.alchemy.rest.client.request.RequestBuilderFilter;
 /**
  * Factory for jersey based proxy clients.
  *
- * @author ashish
+ * @author Ashish Shinde
  *
  */
 @Singleton
@@ -85,7 +85,7 @@ public class AlchemyRestClientFactory {
     /**
      * Handles rest method invocation for a single rest service.
      *
-     * @author ashish
+     * @author Ashish Shinde
      *
      */
     @RequiredArgsConstructor

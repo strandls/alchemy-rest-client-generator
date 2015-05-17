@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Alchemy Rest Client Generator Authors
+ * Copyright (C) 2015 Strand Life Sciences.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ import lombok.NonNull;
  * Metadata for the rest interface / implementing class obtained from
  * annotations on the rest interface / class.
  *
- * @author ashish
+ * @author Ashish Shinde
  *
  */
 @Data

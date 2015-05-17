@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Alchemy Rest Client Generator Authors
+ * Copyright (C) 2015 Strand Life Sciences.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ import org.stringtemplate.v4.STGroupFile;
 /**
  * Generates a guice module that binds the stubs to their proxy implementations.
  *
- * @author ashish
+ * @author Ashish Shinde
  *
  */
 @Singleton
