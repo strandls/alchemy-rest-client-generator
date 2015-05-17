@@ -27,6 +27,7 @@ Specifically, Alchemy rest client generator
  * uses guice for dependency injection, leading to cleaner and more loosely coupled code
  * supports query, path, matrix, header, cookie and form parameters for the rest methods
  * can marshall and demarshall exceptions thrown by services so that client can see the exception as if they were thrown by local methods.
+
 Alchemy rest client **does not**
  * generate client side transfer objects as yet. For example if have a webservice as follows.
 
