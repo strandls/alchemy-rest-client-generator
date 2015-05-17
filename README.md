@@ -13,6 +13,7 @@
    - [Common marshaller / demarshaller](#common-marshaller--demarshaller)
    - [Server side exception mapper](#server-side-exception-mapper)
  - [Demo](#demo)
+ - [TODO](#todo)
  - [Contributing](#contributing)
      - [Setting up eclipse](#setting-up-eclipse)
  - [Copyright and license](#copyright-and-license)
@@ -504,6 +505,10 @@ You might need to bind add a guice binding to your [Servlet module][GuiceServlet
 
 The [Alchemy Rest Client Demo][ARCDemo] project is a good demostration of real life use of this module.
 
+## TODO
+
+Generate client from WADL.
+
 ## Contributing
 
 Please refer to [Contribution Guidlines][Contrib] if you are not familiar with contributing to open source projects.
@@ -525,7 +530,6 @@ gradle eclipse
 Import alchemy inject to eclipse using File > Import > Existing Projects into Workspace
 
 The project has been setup to auto format the code via eclipse save actions. Please try not to disturb this.
-
 
 ## Copyright and license
 
