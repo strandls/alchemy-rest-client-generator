@@ -66,7 +66,7 @@ dependencies {
     compileOnly group: "org.projectlombok", name: "lombok", version: "latest.release"
 
     // test dependencies
-    testCompile 'junit:junit:4.+'
+    testCompile 'junit:junit:4.12'
     testCompile 'com.google.guiceberry:guiceberry:latest.release'
 
     // logging

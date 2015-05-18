@@ -524,7 +524,7 @@ The gist for making a contibution is
 #### Setting up eclipse
 Run
 ```
-gradle eclipse
+gradle/gradlew eclipse
 ```
 
 Import alchemy inject to eclipse using File > Import > Existing Projects into Workspace
